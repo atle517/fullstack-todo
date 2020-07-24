@@ -12,13 +12,13 @@ export class Header extends Component {
     }
 }
 
-const linkStyle = {
-    display: 'inline-block',
+// const linkStyle = {
+//     display: 'inline-block',
 
-    marginRight: '5px',
-    marginLeft: 'auto',
+//     marginRight: '5px',
+//     marginLeft: 'auto',
 
-    textAlign: 'right'
-}
+//     textAlign: 'right'
+// }
 
 export default Header

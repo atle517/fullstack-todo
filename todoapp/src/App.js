@@ -10,8 +10,10 @@ class App extends React.Component {
   constructor(props) {
     super(props)
 
+    this.apiURL = "http://localhost:3000";
+
     this.state = {
-      todos: this.createToDos()
+      todos: []
     }
   }
 
@@ -39,49 +41,78 @@ class App extends React.Component {
 
   }
 
+  // When the app starts, get todos from the database and set it to the state
+  componentDidMount() {
+    this.getTodos();
+  }
+
+  getTodos() {
+    fetch(`${this.apiURL}/todo`)
+      .then(res => res.json())
+      .then((data) => {
+
+        let todos = data.data;
+
+        // Convert 'completed' from 0's to bools
+        for (let i = 0; i < todos.length; i++) {
+          if (todos[i].completed === 0) {
+            todos[i].completed = false;
+          } else {
+            todos[i].completed = true;
+          }
+        }
+
+        // Set todos in the state
+        this.setState({ todos })
+      })
+      .catch(console.log)
+  }
+
   // Adds a new ToDo
   addToDo = desc => {
-    let newTodos = this.state.todos;
+    fetch(`${this.apiURL}/todo?desc="${desc}"&completed=0`, { "method": "POST" })
+      .then(res => res.json())
+      .then((data) => {
 
-    newTodos.push({
-      id: newTodos.length + 500,
-      desc,
-      completed: false
-    })
+        //Refresh ToDos
+        this.getTodos();
 
-    this.setState({
-      todos: newTodos
-    })
+      })
+      .catch(console.log)
+
   }
 
   // Marks a ToDo as completed
   setAsCompleted = id => {
-    let newTodos = this.state.todos.map(todo =>
-      todo.id === id ? { ...todo, completed: !todo.completed } : todo
-    );
+    // Get the selected todo
+    let editedToDo = this.state.todos.filter(todo => todo.id === id);
+    editedToDo = editedToDo[0];
 
-    this.setState({
-      todos: newTodos
-    });
+    // Flip the completed value and return it as a number
+    editedToDo.completed = editedToDo.completed ? 0 : 1;
+
+    fetch(`${this.apiURL}/todo?id=${editedToDo.id}&desc="${editedToDo.desc}"&completed=${editedToDo.completed}`, { "method": "PUT" })
+      .then(res => res.json())
+      .then((data) => {
+
+        //Refresh ToDos
+        this.getTodos();
+
+      })
+      .catch(console.log)
   }
 
   // Removes ToDo
   removeToDo = id => {
-    // Create a copy of the ToDos array
-    let newTodos = this.state.todos;
+    fetch(`${this.apiURL}/todo/${id}`, { "method": "DELETE" })
+      .then(res => res.json())
+      .then((data) => {
 
-    // Loop through all ToDos until it finds the right ToDo and then removes it
-    for (let i = 0; i < newTodos.length; i++) {
-      if (newTodos[i].id === id) {
-        newTodos.splice(i, 1);
-        break;
-      }
-    }
+        //Refresh ToDos
+        this.getTodos();
 
-    // Update state
-    this.setState({
-      todos: newTodos
-    });
+      })
+      .catch(console.log)
   }
 
   render() {
@@ -95,7 +126,7 @@ class App extends React.Component {
 
           {/* Shows all todos from state.todos */}
           {this.state.todos.map(toDo => {
-            return <ToDo id={toDo.id} desc={toDo.desc} completed={toDo.completed} setAsCompleted={this.setAsCompleted} remove={this.removeToDo} />
+            return <ToDo key={toDo.id} id={toDo.id} desc={toDo.desc} completed={toDo.completed} setAsCompleted={this.setAsCompleted} remove={this.removeToDo} />
           })}
 
           {/* Menu and button that allows user to add new ToDos */}
