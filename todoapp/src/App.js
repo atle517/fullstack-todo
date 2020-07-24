@@ -3,7 +3,7 @@ import './Styles.css';
 import Header from './components/Header';
 import Footer from './components/Footer'
 import ToDo from './components/ToDo';
-import AddToDo from './components/addToDo/AddToDo';
+import AddToDo_Main from './components/addToDo/AddToDo_Main';
 
 class App extends React.Component {
 
@@ -39,10 +39,22 @@ class App extends React.Component {
 
   }
 
-  addNewTodo = desc => {
+  // Adds a new ToDo
+  addToDo = desc => {
     let newTodos = this.state.todos;
+
+    newTodos.push({
+      id: newTodos.length + 500,
+      desc,
+      completed: false
+    })
+
+    this.setState({
+      todos: newTodos
+    })
   }
 
+  // Marks a ToDo as completed
   setAsCompleted = id => {
     let newTodos = this.state.todos.map(todo =>
       todo.id === id ? { ...todo, completed: !todo.completed } : todo
@@ -53,16 +65,20 @@ class App extends React.Component {
     });
   }
 
-  remove = id => {
+  // Removes ToDo
+  removeToDo = id => {
+    // Create a copy of the ToDos array
     let newTodos = this.state.todos;
 
-      for(let i = 0; i < newTodos.length; i++){
-        if(newTodos[i].id === id){
-          newTodos.splice(i, 1);
-          break;
-        }
+    // Loop through all ToDos until it finds the right ToDo and then removes it
+    for (let i = 0; i < newTodos.length; i++) {
+      if (newTodos[i].id === id) {
+        newTodos.splice(i, 1);
+        break;
       }
+    }
 
+    // Update state
     this.setState({
       todos: newTodos
     });
@@ -71,18 +87,24 @@ class App extends React.Component {
   render() {
     return (
       <div>
+
         <Header />
 
+        {/* Main content */}
         <div className="wrapper">
+
+          {/* Shows all todos from state.todos */}
           {this.state.todos.map(toDo => {
-            return <ToDo id={toDo.id} desc={toDo.desc} completed={toDo.completed} setAsCompleted={this.setAsCompleted} remove={this.remove} />
+            return <ToDo id={toDo.id} desc={toDo.desc} completed={toDo.completed} setAsCompleted={this.setAsCompleted} remove={this.removeToDo} />
           })}
 
-          <AddToDo />
+          {/* Menu and button that allows user to add new ToDos */}
+          <AddToDo_Main addToDo={this.addToDo} />
 
         </div>
 
         <Footer />
+
       </div>
     );
   }

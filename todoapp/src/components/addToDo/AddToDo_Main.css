@@ -1,0 +1,12 @@
+/* AddToDo */
+
+.component-addtodo {
+    position: fixed;
+  
+    width: 100%;
+    height: 125px;
+  
+    left: 0;
+    bottom: 0;
+    
+  }

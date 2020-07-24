@@ -1,0 +1,70 @@
+.component-addtodo-button-open, .component-addtodo-button-close, .component-addtodo-button-apply {
+
+    display: flex;
+    position: relative;
+
+    border-radius: 50%;
+  
+    width: 70px;
+    height: 70px;
+  
+    margin-right: 5px;
+    margin-left: auto;
+  
+    margin-top: 5px;
+
+    font-size: 45px;
+    align-items: center;
+    justify-content: center;
+  }
+  
+    /* Button - Open Menu */
+  .component-addtodo-button-open {
+    background-color: rgb(0, 231, 0);
+  
+    box-shadow: 2px 4px 4px 0px rgba(0,0,0,0.4);
+  }
+  
+  .component-addtodo-button-open:hover {
+    background-color: rgb(0, 192, 0);
+  }
+  
+  .component-addtodo-button-open:active {
+    background-color: rgb(0, 170, 0);
+  }
+  
+  /* Button - Close Menu */
+  .component-addtodo-button-close {
+    background-color: rgb(224, 0, 0);
+    box-shadow: inset 2px 2px 3px #333;
+  
+    font-size: 45px;
+  
+    position: absolute;
+    right: 80px;
+  }
+  
+  .component-addtodo-button-close:hover {
+    background-color: rgb(195, 0, 0);
+  }
+  
+  .component-addtodo-button-close:active {
+    background-color: rgb(160, 0, 0);
+  }
+  
+  /* Button - Add New ToDo */
+  .component-addtodo-button-apply {
+    box-shadow: inset 1px 1px 3px #333;
+  
+    background-color: rgb(0, 212, 0);
+    font-size: 45px;
+  }
+  
+  .component-addtodo-button-apply:hover {
+    background-color: rgb(0, 182, 0);
+  }
+  
+  .component-addtodo-button-apply:active {
+    background-color: rgb(0, 148, 0);
+  }
+  

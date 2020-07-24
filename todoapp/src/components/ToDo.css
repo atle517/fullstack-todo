@@ -1,0 +1,119 @@
+/* ToDo Styles */
+.component-todo-wrapper {
+    display: 'flexbox';
+  
+    animation-name: popIn;
+    animation-duration: 1s;
+    animation-fill-mode: both;
+    
+  }
+  
+  .component-todo {
+    border: 1px solid;
+  
+    height: 75px;
+  
+    border-radius: 5px 0px 0px 5px;
+  
+    box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.4);
+    background: linear-gradient(135deg, rgba(255,255,255,1) 0%, rgba(195,195,195,1) 100%, rgba(78,78,78,1) 100%);
+  
+    margin-top: 5px;
+    margin-right: 40px;
+  
+    display: flex;
+  
+  }
+  
+  @keyframes popIn {
+    0% { margin-left: 100vw; margin-right: 200vw; opacity: 0;}
+    35% { opacity: 0 }
+    100% { margin-left: auto; margin-right: 0px; opacity: 1 }
+  }
+  
+  .component-todo:hover {
+    background: linear-gradient(140deg, rgba(227,227,227,1) 0%, rgba(180,180,180,1) 100%);
+  }
+  
+  .component-todo:active {
+    background: linear-gradient(140deg, rgba(210,210,210,1) 0%, rgba(136,136,136,1) 100%);
+  }
+  
+  .component-todo-checkmark-check {
+    width: 40px;
+    height: 40px;
+  
+    font-size: 50px;
+    
+    padding-left: 5px;
+  
+    /* color:green; */
+  
+    position: absolute;
+    z-index: 0;
+  }
+  
+  .component-todo-checkmark-box {
+    min-width: 35px;
+    min-height: 35px;
+    
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 6px;
+  
+    border: 1px solid black;
+    border-radius: 3px;
+    
+    background: linear-gradient(140deg, rgb(235, 235, 235) 0%, rgba(180,180,180,1) 100%);
+    box-shadow: inset 1px 1px 3px #333;
+    
+  }
+  
+  .component-todo-desc {
+    font-size: calc(12px + 0.8vw);
+  
+    padding-left: 10px;
+  
+    margin-top: auto;
+    margin-bottom: auto;
+    
+  
+  }
+  
+  .lined-through {
+    text-decoration: line-through;
+  }
+  
+  .component-todo-delete-button {
+    
+    margin-left: auto;
+    margin-right: 0;
+  
+    margin-top:-75px;
+  
+    width: 40px;
+    height: 75px;
+  
+    background: linear-gradient(140deg, rgba(255,0,0,1) 0%, rgba(92,0,0,1) 100%);
+  
+    font-size: 32px;
+    color: rgb(80, 0, 0);
+  
+    display:flex;
+    
+    border: 1px solid;  
+    border-radius: 0px 5px 5px 0px;
+  
+    box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.4);
+  
+    
+  
+  }
+  
+  .component-todo-delete-button:hover {
+    background: linear-gradient(140deg, rgb(228, 0, 0) 0%, rgba(92,0,0,1) 100%);
+  }
+  
+  .component-todo-delete-button:active {
+    background: linear-gradient(140deg, rgb(177, 0, 0) 0%, rgba(92,0,0,1) 100%);
+  }
