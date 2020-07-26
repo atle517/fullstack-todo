@@ -17,30 +17,6 @@ class App extends React.Component {
     }
   }
 
-  createToDos() {
-    let todos = [
-      {
-        "id": 1,
-        "desc": "Make Server",
-        "completed": false
-      },
-      {
-        "id": 2,
-        "desc": "Make Database",
-        "completed": false
-      },
-      {
-        "id": 3,
-        "desc": "Make ToDo App",
-        "completed": false
-      }
-
-    ];
-
-    return todos;
-
-  }
-
   // When the app starts, get todos from the database and set it to the state
   componentDidMount() {
     this.getTodos();
@@ -55,11 +31,7 @@ class App extends React.Component {
 
         // Convert 'completed' from 0's to bools
         for (let i = 0; i < todos.length; i++) {
-          if (todos[i].completed === 0) {
-            todos[i].completed = false;
-          } else {
-            todos[i].completed = true;
-          }
+          todos[i].completed = (todos[i].completed === 0) ? false : true;
         }
 
         // Set todos in the state
@@ -85,8 +57,7 @@ class App extends React.Component {
   // Marks a ToDo as completed
   setAsCompleted = id => {
     // Get the selected todo
-    let editedToDo = this.state.todos.filter(todo => todo.id === id);
-    editedToDo = editedToDo[0];
+    let editedToDo = this.state.todos.find(todo => todo.id === id);
 
     // Flip the completed value and return it as a number
     editedToDo.completed = editedToDo.completed ? 0 : 1;

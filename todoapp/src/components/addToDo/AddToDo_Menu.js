@@ -9,12 +9,14 @@ function AddToDo_Menu(props) {
             {/* Input - ToDo Description */}
             <input className="component-addtodo-input" onChange={e => props.setDesc(e.target.value)} />
 
-            {/* Button - Close menu */}
-            <AddToDo_Button type="close" symbol="close" symbolColor="rgb(50, 0, 0)" clickHandler={props.clickHandler} />
+            {/* Buttons - 'Close menu' and 'Add new ToDo' */}
+            <div style={{display: 'flex'}}>
+                {/* Button - Close menu */}
+                <AddToDo_Button type="close" symbol="close" symbolColor="rgb(50, 0, 0)" clickHandler={props.clickHandler} />
 
-            {/* Button - Add new ToDo */}
-            <AddToDo_Button type="apply" symbol="check" symbolColor="rgb(0, 50, 0)" clickHandler={props.addToDo} />
-
+                {/* Button - Add new ToDo */}
+                <AddToDo_Button type="apply" symbol="check" symbolColor="rgb(0, 50, 0)" clickHandler={props.addToDo} />
+            </div>
         </div>
     )
 }
